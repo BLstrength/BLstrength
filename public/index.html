@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BL Strength — Personal Training & Nutrition</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #F4F6FA;
+    --warm-white: #FFFFFF;
+    --clay: #2A4A7F;
+    --clay-light: #4A6FA5;
+    --clay-dark: #1A3260;
+    --sage: #5B8DB8;
+    --sage-light: #A0BDD8;
+    --charcoal: #0F1B2D;
+    --stone: #5A6A7E;
+    --blush: #DDE6F2;
+    --blush-deep: #C2D3E8;
+    --mint: #EBF1F8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 5%;
+    background: rgba(250,247,242,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(42,74,127,0.12);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(46,44,42,0.07); }
+
+  .nav-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.35rem;
+    color: var(--clay-dark);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--sage); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--stone);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links li::after {
+    content: '|';
+    color: var(--blush-deep);
+    font-size: 1rem;
+    margin-left: 2rem;
+    pointer-events: none;
+  }
+  .nav-links li:last-child::after { display: none; }
+
+  .nav-login {
+    color: var(--clay);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid var(--clay);
+    padding: 0.45rem 1.1rem;
+    border-radius: 50px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-login:hover { background: var(--clay); color: #fff; }
+
+  .ham-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--charcoal);
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  #hamburger:hover .ham-bar { background: var(--clay); }
+
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a::after { content: ' ▾'; font-size: 0.7rem; }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 0.75rem;
+    background: transparent;
+    z-index: 200;
+  }
+  .dropdown-inner {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(15,27,45,0.12);
+    padding: 0.5rem;
+    min-width: 180px;
+  }
+  .dropdown-menu a {
+    display: block;
+    padding: 0.6rem 1rem;
+    color: var(--charcoal) !important;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .dropdown-menu a:hover { background: var(--blush); color: var(--clay) !important; }
+  .nav-dropdown:hover .dropdown-menu { display: block; }
+
+  .nav-cta {
+    background: var(--clay);
+    color: #fff !important;
+    padding: 0.55rem 1.3rem;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: var(--clay-dark) !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 7rem 5% 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 55%;
+    height: 110%;
+    background: radial-gradient(ellipse at 60% 40%, #DDE6F2 0%, #F4F6FA 70%);
+    z-index: 0;
+    border-radius: 40% 0 0 40%;
+  }
+
+  .hero-text { position: relative; z-index: 1; animation: fadeUp 0.9s ease both; max-width: 700px; }
+
+  .hero p { max-width: 580px; margin: 0 auto 2rem; }
+
+  .hero-actions { justify-content: center; }
+
+  .hero-stats { justify-content: center; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--mint);
+    color: var(--sage);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag::before { content: ''; font-size: 0.65rem; }
+
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    line-height: 1.2;
+    color: var(--charcoal);
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--clay);
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+    color: var(--stone);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--clay);
+    color: #fff;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(42,74,127,0.3);
+  }
+  .btn-primary:hover { background: var(--clay-dark); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(42,74,127,0.38); }
+
+  .btn-ghost {
+    color: var(--charcoal);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--clay); }
+  .btn-ghost::after { content: '→'; transition: transform 0.2s; }
+  .btn-ghost:hover::after { transform: translateX(3px); }
+
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--blush-deep);
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: 'Lora', serif;
+    font-size: 1.8rem;
+    color: var(--clay);
+    font-weight: 600;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--stone); margin-top: 0.15rem; }
+
+  .hero-visual {
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+
+  .hero-card-main {
+    background: var(--warm-white);
+    border-radius: 28px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 48px rgba(46,44,42,0.1);
+    position: relative;
+  }
+
+  .trainer-avatar {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, var(--clay-light), var(--clay-dark));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-card-main h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+  }
+  .hero-card-main p { font-size: 0.88rem; color: var(--stone); margin-bottom: 1.2rem; }
+
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+  .check-list li {
+    font-size: 0.88rem;
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .check-list li::before {
+    content: '✓';
+    width: 20px; height: 20px;
+    background: var(--mint);
+    color: var(--sage);
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .rating-row {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.82rem; color: var(--stone);
+  }
+  .stars { color: #F5B942; letter-spacing: 1px; }
+
+  .float-badge {
+    position: absolute;
+    background: var(--warm-white);
+    border-radius: 16px;
+    padding: 0.9rem 1.1rem;
+    box-shadow: 0 4px 24px rgba(46,44,42,0.12);
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    white-space: nowrap;
+    animation: float 4s ease-in-out infinite;
+  }
+  .float-badge.b1 { top: -1rem; right: -1.5rem; animation-delay: 0s; }
+  .float-badge.b2 { bottom: 1rem; left: -2rem; animation-delay: 1.5s; }
+  .badge-icon { font-size: 1.2rem; }
+
+  /* ── SECTION WRAPPER ── */
+  section { padding: 5.5rem 5%; }
+
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.25;
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+  }
+  .section-title em { font-style: italic; font-weight: 600; color: var(--clay); }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--stone);
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--warm-white); }
+
+  .how-header { text-align: center; margin-bottom: 3.5rem; }
+  .how-header .section-sub { margin: 0 auto; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 2.2rem;
+    left: 16%;
+    right: 16%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blush-deep), var(--sage-light));
+    z-index: 0;
+  }
+
+  .step {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.6s ease both;
+  }
+  .step:nth-child(2) { animation-delay: 0.15s; }
+  .step:nth-child(3) { animation-delay: 0.3s; }
+
+  .step-num {
+    width: 4.5rem; height: 4.5rem;
+    background: var(--cream);
+    border: 3px solid var(--blush-deep);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.2rem;
+    font-family: 'Lora', serif;
+    font-size: 1.5rem;
+    color: var(--clay);
+    font-weight: 600;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .step:hover .step-num { border-color: var(--clay); background: var(--blush); }
+
+  .step h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .step p { font-size: 0.88rem; color: var(--stone); line-height: 1.6; }
+
+  /* ── PROGRAMS ── */
+  .programs-header { margin-bottom: 2.5rem; }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .program-card {
+    background: var(--warm-white);
+    border-radius: 24px;
+    padding: 2rem;
+    border: 2px solid transparent;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .program-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gradient);
+  }
+  .program-card:hover {
+    border-color: var(--blush-deep);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(42,74,127,0.12);
+  }
+  .program-card.featured {
+    background: linear-gradient(145deg, #1A3260 0%, #0F1B2D 100%);
+    color: #fff;
+    border-color: transparent;
+  }
+  .program-card.featured .prog-price,
+  .program-card.featured .prog-desc,
+  .program-card.featured .prog-feature { color: rgba(255,255,255,0.8); }
+  .program-card.featured .prog-name { color: #fff; }
+  .program-card.featured .popular-badge { background: rgba(255,255,255,0.15); color: #fff; }
+  .program-card.featured .prog-cta { background: #fff; color: var(--clay-dark); }
+  .program-card.featured .prog-cta:hover { background: var(--cream); }
+
+  .popular-badge {
+    display: inline-block;
+    background: #1A3260;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+  }
+
+  .prog-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .prog-name {
+    font-family: 'Lora', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    text-align: center;
+  }
+  .prog-desc { font-size: 0.88rem; color: var(--stone); line-height: 1.6; margin-bottom: 1.2rem; }
+  .prog-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--clay);
+    margin-bottom: 0.2rem;
+  }
+  .prog-price span { font-size: 0.85rem; font-weight: 400; color: var(--stone); }
+  .prog-features { list-style: none; margin: 1.2rem 0; display: flex; flex-direction: column; gap: 0.55rem; }
+  .prog-feature {
+    font-size: 0.85rem; color: var(--stone);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .prog-feature::before { content: '→'; color: var(--sage); font-weight: 600; }
+
+  .prog-cta {
+    display: block; text-align: center;
+    background: var(--clay);
+    color: #fff;
+    padding: 0.75rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 1.5rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .prog-cta:hover { background: var(--clay-dark); transform: translateY(-1px); }
+
+  /* ── NUTRITION ── */
+  .nutrition { background: var(--mint); }
+
+  .nutrition-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .nutrition-features { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+  .nutr-feat {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.2rem;
+    background: #fff;
+    border-radius: 16px;
+    transition: box-shadow 0.2s;
+  }
+  .nutr-feat:hover { box-shadow: 0 4px 20px rgba(91,141,184,0.15); }
+  .nutr-icon {
+    width: 44px; height: 44px;
+    background: var(--mint);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .nutr-feat h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .nutr-feat p { font-size: 0.83rem; color: var(--stone); line-height: 1.5; }
+
+  .nutrition-visual { position: relative; }
+
+  .meal-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 32px rgba(46,44,42,0.08);
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    transition: transform 0.2s;
+  }
+  .meal-card:hover { transform: translateX(4px); }
+  .meal-emoji { font-size: 2rem; }
+  .meal-info h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .meal-info p { font-size: 0.8rem; color: var(--stone); }
+  .meal-macros {
+    margin-left: auto;
+    text-align: right;
+  }
+  .macro-pill {
+    display: inline-block;
+    background: var(--blush);
+    color: var(--clay-dark);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 50px;
+    margin-left: 0.3rem;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--warm-white); }
+
+  .test-header { text-align: center; margin-bottom: 3rem; }
+  .test-header .section-sub { margin: 0 auto; }
+
+  .test-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .test-card {
+    background: var(--cream);
+    border-radius: 20px;
+    padding: 1.8rem;
+    border: 1px solid var(--blush-deep);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .test-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(42,74,127,0.1); }
+
+  .test-stars { color: #F5B942; font-size: 0.85rem; margin-bottom: 0.8rem; }
+  .test-quote {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--charcoal);
+    margin-bottom: 1.2rem;
+  }
+  .test-author { display: flex; align-items: center; gap: 0.75rem; }
+  .test-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .av1 { background: var(--blush); }
+  .av2 { background: var(--mint); }
+  .av3 { background: #FEF3C7; }
+  .test-name { font-size: 0.88rem; font-weight: 600; }
+  .test-detail { font-size: 0.78rem; color: var(--stone); }
+
+  /* ── CTA / CONSULTATION ── */
+  .cta-section {
+    background: linear-gradient(135deg, #0F1B2D 0%, #1A3260 60%, #2A4A7F 100%);
+    color: #fff;
+    text-align: center;
+    padding: 3rem 5%;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -20%;
+    width: 60%; height: 200%;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    bottom: -50%; right: -10%;
+    width: 50%; height: 200%;
+    background: rgba(255,255,255,0.03);
+    border-radius: 50%;
+  }
+
+  .cta-section .section-tag { color: rgba(255,255,255,0.75); }
+  .cta-section .section-title { color: #fff; margin: 0 auto 1rem; }
+  .cta-section .section-sub { color: rgba(255,255,255,0.8); margin: 0 auto 2.5rem; }
+
+  .cta-form {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+    position: relative; z-index: 1;
+  }
+  .cta-form input {
+    flex: 1;
+    padding: 0.85rem 1.2rem;
+    border-radius: 50px;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    background: rgba(255,255,255,0.95);
+    color: var(--charcoal);
+  }
+  .cta-form input::placeholder { color: var(--stone); }
+  .cta-form button {
+    background: var(--charcoal);
+    color: #fff;
+    border: none;
+    padding: 0.85rem 1.6rem;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cta-form button:hover { background: #000; transform: translateY(-1px); }
+
+  .cta-note { font-size: 0.8rem; color: rgba(255,255,255,0.6); position: relative; z-index: 1; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.7);
+    padding: 3rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+    color: #fff;
+  }
+  .footer-logo span { color: var(--sage-light); }
+  footer p { font-size: 0.82rem; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: rgba(255,255,255,0.5); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: #fff; }
+
+  /* ── PHOTO GRID ── */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    height: 480px;
+  }
+
+  .photo-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .photo-slot {
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--blush);
+    flex: 1;
+  }
+
+  .photo-slot.photo-tall {
+    height: 100%;
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--blush);
+    border: 2px dashed var(--blush-deep);
+    border-radius: 16px;
+    color: var(--stone);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    min-height: 100px;
+  }
+
+  .photo-placeholder:hover {
+    background: var(--blush-deep);
+    border-color: var(--clay);
+    color: var(--clay);
+  }
+
+  /* ── TRAINER AVATAR (hide empty div) ── */
+  .trainer-avatar:empty { display: none; }
+
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 6rem; text-align: center; gap: 2.5rem; }
+    .hero::before { display: none; }
+    .hero p { margin: 0 auto 2rem; }
+    .hero-stats { justify-content: center; }
+    .hero-actions { justify-content: center; }
+    .programs-grid, .test-grid, .steps { grid-template-columns: 1fr; }
+    .steps::before { display: none; }
+    .nutrition-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .cta-form { flex-direction: column; }
+    .float-badge.b1, .float-badge.b2 { display: none; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo"><img src="logo-blue.png" alt="BL Strength" style="height: 70px; width: auto;" /></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About Me</a></li>
+    <li><a href="strength.html">Strength</a></li>
+    <li><a href="nutrition.html">Macros</a></li>
+    <li><a href="store.html">Store</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Apply for Coaching</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-tag">BL Strength — Bobby Lawson Strength</div>
+    <h1>Be coached by a<br><em>proven powerlifter.</em></h1>
+    <p>Bobby Lawson is a competitive powerlifter with a best meet total of 2,405 pounds, including a 1,045 squat, 725 bench, and 705 deadlift. Whether your goal is your first meet or a lifetime PR, you'll train with someone who lives the sport.</p>
+    <div class="hero-actions">
+      <a href="#programs" class="btn-primary">View Programs</a>
+      <a href="#contact" class="btn-primary">Book a Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-header">
+    <h2 class="section-title">What you can <em>expect</em></h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Free Consultation</h3>
+      <p>We'll review your goals, background, and current needs to build the right approach for you.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Your Custom Program</h3>
+      <p>I'll build you a custom program that works toward your goals, addresses your weaknesses, and fits your schedule.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Ongoing Coaching</h3>
+      <p>Regular check-ins, form reviews, and adjustments as you progress. I'm in your corner from day one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="programs-header" style="text-align: center;">
+    <h2 class="section-title">Choose your <em>method</em></h2>
+    <p class="section-sub" style="margin: 0 auto;">Built from real competitive experience, each coaching method is designed to push you toward your goals. Whether that means a larger total, better performance, or a physique you're proud of.</p>
+  </div>
+
+  <!-- Main Programs -->
+  <div class="programs-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 800px; margin: 0 auto 1rem;">
+
+    <div class="program-card featured">
+      <div class="prog-name">Strength Coaching</div>
+      <p class="prog-desc">Strength starts with the basics. My strength coaching focuses on proper technique and progression in the squat, bench, and deadlift.</p>
+      <div class="prog-price" style="display:block; text-align:center;">$200 <span>/ month</span></div>
+      <ul class="prog-features">
+        <li class="prog-feature">Weekly strength program consisting of warm-ups, corrective exercises, main movements, and accessories as needed</li>
+        <li class="prog-feature">Unlimited interaction via email/WhatsApp</li>
+        <li class="prog-feature">Unlimited video analysis</li>
+        <li class="prog-feature">The ability to add-on meet handling, macro coaching, and Zoom calls at a discounted rate</li>
+      </ul>
+    </div>
+
+    <div class="program-card featured">
+      <div class="prog-name">Macro Coaching</div>
+      <p class="prog-desc">Eat with a plan, not guesswork. My macro coaching supports your goals, whether that's strength, body recomposition, or performance.</p>
+      <div class="prog-price" style="display:block; text-align:center;">$100 <span>/ month</span></div>
+      <ul class="prog-features">
+        <li class="prog-feature">Weekly personalized macro plans.</li>
+        <li class="prog-feature">Unlimited interaction via email/WhatsApp.</li>
+        <li class="prog-feature">Accountability through weekly check-ins, progress photos, measurements, and updates through an included premium MyFitnessPal membership.</li>
+        <li class="prog-feature">The ability to add-on Zoom calls at a discounted rate.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Add-on Tiles -->
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); max-width: 800px; margin: 0 auto 1.5rem; gap: 1.25rem;">
+
+    <div class="program-card" style="text-align: center; padding: 1.5rem; background: var(--warm-white); border: 2px solid var(--blush-deep);">
+      <div class="prog-name" style="font-size: 1.1rem; color: var(--charcoal);">Video Critique</div>
+      <div style="font-size: 1.2rem; font-weight: 700; color: var(--clay); margin: 0.4rem 0;">$50</div>
+      <p class="prog-desc" style="font-size: 0.82rem; margin: 0.5rem 0 0;">Submit your lifting videos to get detailed technical feedback and coaching queues from Bobby in a video response through email.</p>
+    </div>
+
+    <div class="program-card" style="text-align: center; padding: 1.5rem; background: var(--warm-white); border: 2px solid var(--blush-deep);">
+      <div class="prog-name" style="font-size: 1.1rem; color: var(--charcoal);">Zoom Call</div>
+      <div style="font-size: 1.2rem; font-weight: 700; color: var(--clay); margin: 0.4rem 0;">$50</div>
+      <p class="prog-desc" style="font-size: 0.82rem; margin: 0.5rem 0 0;">A 60-minute Zoom call to review your strength program or macro plan, with the option to include video and technique review.</p>
+    </div>
+
+  </div>
+
+  <!-- Apply for Coaching button -->
+  <div style="max-width: 800px; margin: 0 auto;">
+    <a href="#contact" style="display: block; text-align: center; background: var(--clay); color: #fff; padding: 1rem 3rem; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: 1.05rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 20px rgba(42,74,127,0.3); transition: background 0.2s, transform 0.15s;" onmouseover="this.style.background='#1A3260'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--clay)'; this.style.transform='translateY(0)'">Apply for Coaching</a>
+  </div>
+  <p style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--stone);">* Required 3 month commitment, then month to month</p>
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2 class="section-title" style="margin-bottom: 0.5rem;">Let's build your <em style="color:rgba(255,255,255,0.9)">plan</em></h2>
+  <p class="section-sub" style="margin-bottom: 0.75rem;">Fill out the form below and Bobby will be in touch to schedule your free 30 minute consultation via Zoom.</p>
+
+  <form id="contact-form" style="background: #fff; border-radius: 20px; padding: 1.5rem 2rem; max-width: 600px; margin: 1.2rem auto 0; text-align: left; position: relative; z-index: 1;">
+
+    <!-- First & Last Name -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+      <div>
+        <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">First Name <span style="color:#2A4A7F;">(required)</span></label>
+        <input type="text" name="firstName" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+      </div>
+      <div>
+        <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Last Name <span style="color:#2A4A7F;">(required)</span></label>
+        <input type="text" name="lastName" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div style="margin-bottom: 0.75rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Email <span style="color:#2A4A7F;">(required)</span></label>
+      <input type="email" name="email" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+    </div>
+
+    <!-- Phone -->
+    <div style="margin-bottom: 0.75rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Phone Number <span style="color:#2A4A7F;">(required)</span></label>
+      <input type="tel" name="phone" placeholder="e.g. +1 555 000 0000" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+    </div>
+
+    <!-- How did you hear -->
+    <div style="margin-bottom: 0.75rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">How did you hear about me? <span style="color:#2A4A7F;">(required)</span></label>
+      <select name="hearAbout" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
+        <option value="" disabled selected>Select an option</option>
+        <option>Instagram</option>
+        <option>Google</option>
+        <option>Friend / Word of mouth</option>
+        <option>Powerlifting meet</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <!-- Service dropdown -->
+    <div style="margin-bottom: 0.75rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">What service are you interested in? <span style="color:#2A4A7F;">(required)</span></label>
+      <select name="service" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
+        <option value="" disabled selected>Select a service</option>
+        <option>Strength Coaching</option>
+        <option>Macro Coaching</option>
+        <option>Video Critique</option>
+        <option>Zoom Call</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <!-- Goal description -->
+    <div style="margin-bottom: 1rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Brief description of your goal <span style="color:#2A4A7F;">(required)</span></label>
+      <textarea name="goal" rows="3" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none; resize:vertical;"></textarea>
+    </div>
+
+    <div style="text-align: center;">
+      <button id="submit-btn" type="submit" style="background:#1A3260; color:#fff; border:none; padding:0.9rem 2.5rem; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:600; cursor:pointer; transition:background 0.2s;">Send</button>
+    </div>
+  </form>
+
+  <p class="cta-note" style="margin-top: 1.5rem;">Just a real conversation about your training.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#"><img src="logo-white.png" alt="BL Strength" style="height: 90px; width: auto;" /></a>
+  <p>© 2026 BL Strength. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">Privacy</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Sticky nav shadow
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.animation = 'fadeUp 0.6s ease both';
+        e.target.style.opacity = '1';
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.program-card, .test-card, .nutr-feat, .meal-card').forEach(el => {
+    el.style.opacity = '0';
+    observer.observe(el);
+  });
+
+  // Contact form submission
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    const data = {};
+    this.querySelectorAll('[name]').forEach(el => { data[el.name] = el.value; });
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        btn.textContent = 'Sent!';
+        btn.style.background = '#22c55e';
+        this.reset();
+        setTimeout(() => { btn.disabled = false; btn.textContent = orig; btn.style.background = ''; }, 4000);
+      } else {
+        throw new Error();
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = orig;
+      alert('Something went wrong. Please try again.');
+    }
+  });
+</script>
+</body>
+</html>

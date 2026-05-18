@@ -143,6 +143,18 @@
   }
   .nav-cta:hover { background: var(--clay-dark) !important; transform: translateY(-1px); }
 
+  #hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+  @media (max-width: 768px) {
+    nav { padding: 0.75rem 5%; }
+    #hamburger { display: flex; }
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: center; gap: 0; background: rgba(250,247,242,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(42,74,127,0.12); padding: 1rem 0 1.5rem; transform: none; z-index: 99; }
+    .nav-links.open { display: flex; }
+    .nav-links li::after { display: none; }
+    .nav-links a { font-size: 1rem; padding: 0.7rem 0; }
+    .nav-cta { display: none; }
+    .nav-mobile-cta { display: block !important; margin-top: 0.75rem; padding: 0.55rem 1.3rem !important; }
+  }
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -785,8 +797,14 @@
     <li><a href="strength.html">Strength</a></li>
     <li><a href="nutrition.html">Macros</a></li>
     <!-- <li><a href="store.html">Store</a></li> -->
+    <li style="list-style:none;"><a href="#contact" class="nav-cta nav-mobile-cta" style="display:none;">Apply for Coaching</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Apply for Coaching</a>
+  <button id="hamburger" aria-label="Menu">
+    <span class="ham-bar"></span>
+    <span class="ham-bar"></span>
+    <span class="ham-bar"></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -969,6 +987,10 @@
 </footer>
 
 <script>
+  document.getElementById('hamburger').addEventListener('click', function() {
+    document.querySelector('.nav-links').classList.toggle('open');
+  });
+
   // Sticky nav shadow
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {

@@ -41,7 +41,7 @@ Goal:     ${goal}
 
       await transporter.sendMail({
         from: `"BL Strength Website" <${process.env.SMTP_USER}>`,
-        to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
+        to: process.env.CONTACT_EMAIL || 'Bobby@BLstrength.com',
         replyTo: email,
         subject: `New Inquiry: ${firstName} ${lastName} — ${service}`,
         text: body,

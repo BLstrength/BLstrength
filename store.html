@@ -57,17 +57,17 @@
     #hamburger { display: flex; }
     .nav-cta { display: none; }
     .nav-links {
-      display: none; flex-direction: column; gap: 0;
+      display: none; flex-direction: column; gap: 0.6rem;
       position: fixed; top: 111px; left: 0; right: 0; transform: none;
       background: rgba(244,246,250,0.98); backdrop-filter: blur(12px);
-      padding: 0.5rem 5% 1rem;
+      padding: 1rem 5% 1.25rem;
       border-bottom: 1px solid rgba(42,74,127,0.12);
       box-shadow: 0 4px 16px rgba(15,27,45,0.08); z-index: 99;
     }
     .nav-links.open { display: flex; }
-    .nav-links li { border-bottom: 1px solid rgba(42,74,127,0.08); }
-    .nav-links li:last-child { border-bottom: none; }
-    .nav-links a { display: block; padding: 1.75rem 0.5rem; font-size: 1.05rem; }
+    .nav-links li { border-bottom: none; }
+    .nav-links a { display: block; padding: 1.1rem 1rem; font-size: 1.05rem; background: rgba(42,74,127,0.04); border-radius: 10px; }
+    .nav-links a:active { background: rgba(194,127,77,0.15); }
     .page { padding: 7rem 5% 4rem; }
     .store-grid { grid-template-columns: 1fr; }
   }
@@ -114,6 +114,9 @@
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.querySelector('.nav-links');
   hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
 </script>
 </body>
 </html>

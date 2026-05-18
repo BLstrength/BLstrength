@@ -89,6 +89,17 @@
   }
   .nav-login:hover { background: var(--clay); color: #fff; }
 
+  #hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem;
+    z-index: 110;
+  }
   .ham-bar {
     display: block;
     width: 22px;
@@ -142,18 +153,6 @@
     transition: background 0.2s, transform 0.15s !important;
   }
   .nav-cta:hover { background: var(--clay-dark) !important; transform: translateY(-1px); }
-
-  #hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-  @media (max-width: 768px) {
-    nav { padding: 0.75rem 5%; }
-    #hamburger { display: flex; }
-    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: center; gap: 0; background: rgba(250,247,242,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(42,74,127,0.12); padding: 1rem 0 1.5rem; transform: none; z-index: 99; }
-    .nav-links.open { display: flex; }
-    .nav-links li::after { display: none; }
-    .nav-links a { font-size: 1rem; padding: 1.1rem 0; }
-    .nav-cta { display: none; }
-    .nav-mobile-cta { display: block !important; margin-top: 0.75rem; padding: 0.55rem 1.3rem !important; }
-  }
 
   /* ── HERO ── */
   .hero {
@@ -762,6 +761,20 @@
   .trainer-avatar:empty { display: none; }
 
 
+  .addon-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    gap: 1.25rem;
+  }
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -773,17 +786,52 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; padding-top: 6rem; text-align: center; gap: 2.5rem; }
+    .hero { padding-top: 6rem; text-align: center; gap: 2.5rem; }
     .hero::before { display: none; }
     .hero p { margin: 0 auto 2rem; }
-    .hero-stats { justify-content: center; }
+    .hero-stats { justify-content: center; flex-wrap: wrap; gap: 1rem; }
     .hero-actions { justify-content: center; }
-    .programs-grid, .test-grid, .steps { grid-template-columns: 1fr; }
+    .programs-grid { grid-template-columns: 1fr !important; }
+    .addon-grid { grid-template-columns: 1fr !important; }
+    .test-grid, .steps { grid-template-columns: 1fr; }
     .steps::before { display: none; }
     .nutrition-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .cta-form { flex-direction: column; }
     .float-badge.b1, .float-badge.b2 { display: none; }
     footer { flex-direction: column; text-align: center; }
+  }
+
+  @media (max-width: 768px) {
+    #hamburger { display: flex; }
+    .nav-cta { display: none; }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 0.6rem;
+      position: fixed;
+      top: 111px;
+      left: 0;
+      right: 0;
+      transform: none;
+      background: rgba(244,246,250,0.98);
+      backdrop-filter: blur(12px);
+      padding: 1rem 5% 1.25rem;
+      border-bottom: 1px solid rgba(42,74,127,0.12);
+      box-shadow: 0 4px 16px rgba(15,27,45,0.08);
+      z-index: 99;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { border-bottom: none; }
+    .nav-links li::after { display: none; }
+    .nav-links a { display: block; padding: 1.1rem 1rem; font-size: 1.05rem; background: rgba(42,74,127,0.04); border-radius: 10px; }
+    .nav-links a:active { background: rgba(194,127,77,0.15); }
+  }
+
+  @media (max-width: 600px) {
+    .form-row-2 { grid-template-columns: 1fr; }
+    section { padding: 4rem 5%; }
+    .hero { padding: 6rem 5% 3rem; }
+    .cta-section { padding: 3rem 5%; }
   }
 </style>
 </head>
@@ -796,11 +844,10 @@
     <li><a href="about.html">About Me</a></li>
     <li><a href="strength.html">Strength</a></li>
     <li><a href="nutrition.html">Macros</a></li>
-    <!-- <li><a href="store.html">Store</a></li> -->
-    <li style="list-style:none;"><a href="#contact" class="nav-cta nav-mobile-cta" style="display:none;">Apply for Coaching</a></li>
+    <li><a href="store.html">Store</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Apply for Coaching</a>
-  <button id="hamburger" aria-label="Menu">
+  <button id="hamburger" aria-label="Open menu">
     <span class="ham-bar"></span>
     <span class="ham-bar"></span>
     <span class="ham-bar"></span>
@@ -810,6 +857,7 @@
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-text">
+    <div class="hero-tag">BL Strength — Bobby Lawson Strength</div>
     <h1>Be coached by a<br><em>proven powerlifter.</em></h1>
     <p>Bobby Lawson is a competitive powerlifter with a best meet total of 2,405 pounds, including a 1,045 squat, 725 bench, and 705 deadlift. Whether your goal is your first meet or a lifetime PR, you'll train with someone who lives the sport.</p>
     <div class="hero-actions">
@@ -880,7 +928,7 @@
   </div>
 
   <!-- Add-on Tiles -->
-  <div style="display: grid; grid-template-columns: repeat(2, 1fr); max-width: 800px; margin: 0 auto 1.5rem; gap: 1.25rem;">
+  <div class="addon-grid">
 
     <div class="program-card" style="text-align: center; padding: 1.5rem; background: var(--warm-white); border: 2px solid var(--blush-deep);">
       <div class="prog-name" style="font-size: 1.1rem; color: var(--charcoal);">Video Critique</div>
@@ -909,36 +957,36 @@
   <h2 class="section-title" style="margin-bottom: 0.5rem;">Let's build your <em style="color:rgba(255,255,255,0.9)">plan</em></h2>
   <p class="section-sub" style="margin-bottom: 0.75rem;">Fill out the form below and Bobby will be in touch to schedule your free 30 minute consultation via Zoom.</p>
 
-  <form id="contact-form" style="background: #fff; border-radius: 20px; padding: 1.5rem 2rem; max-width: 600px; margin: 1.2rem auto 0; text-align: left; position: relative; z-index: 1;">
+  <div style="background: #fff; border-radius: 20px; padding: 1.5rem 2rem; max-width: 600px; margin: 1.2rem auto 0; text-align: left; position: relative; z-index: 1;">
 
     <!-- First & Last Name -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+    <div class="form-row-2">
       <div>
         <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">First Name <span style="color:#2A4A7F;">(required)</span></label>
-        <input type="text" name="firstName" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+        <input type="text" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
       </div>
       <div>
         <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Last Name <span style="color:#2A4A7F;">(required)</span></label>
-        <input type="text" name="lastName" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+        <input type="text" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
       </div>
     </div>
 
     <!-- Email -->
     <div style="margin-bottom: 0.75rem;">
       <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Email <span style="color:#2A4A7F;">(required)</span></label>
-      <input type="email" name="email" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+      <input type="email" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
     </div>
 
     <!-- Phone -->
     <div style="margin-bottom: 0.75rem;">
       <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Phone Number <span style="color:#2A4A7F;">(required)</span></label>
-      <input type="tel" name="phone" placeholder="e.g. +1 555 000 0000" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+      <input type="tel" placeholder="e.g. +1 555 000 0000" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
     </div>
 
     <!-- How did you hear -->
     <div style="margin-bottom: 0.75rem;">
       <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">How did you hear about me? <span style="color:#2A4A7F;">(required)</span></label>
-      <select name="hearAbout" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
+      <select style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
         <option value="" disabled selected>Select an option</option>
         <option>Instagram</option>
         <option>Google</option>
@@ -951,7 +999,7 @@
     <!-- Service dropdown -->
     <div style="margin-bottom: 0.75rem;">
       <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">What service are you interested in? <span style="color:#2A4A7F;">(required)</span></label>
-      <select name="service" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
+      <select style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
         <option value="" disabled selected>Select a service</option>
         <option>Strength Coaching</option>
         <option>Macro Coaching</option>
@@ -964,20 +1012,20 @@
     <!-- Goal description -->
     <div style="margin-bottom: 1rem;">
       <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Brief description of your goal <span style="color:#2A4A7F;">(required)</span></label>
-      <textarea name="goal" rows="3" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none; resize:vertical;"></textarea>
+      <textarea rows="3" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none; resize:vertical;"></textarea>
     </div>
 
     <div style="text-align: center;">
-      <button id="submit-btn" type="submit" style="background:#1A3260; color:#fff; border:none; padding:0.9rem 2.5rem; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:600; cursor:pointer; transition:background 0.2s;">Send</button>
+      <button type="button" style="background:#1A3260; color:#fff; border:none; padding:0.9rem 2.5rem; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:600; cursor:pointer;" onmouseover="this.style.background='#0F1B2D'" onmouseout="this.style.background='#1A3260'">Send</button>
     </div>
-  </form>
+  </div>
 
   <p class="cta-note" style="margin-top: 1.5rem;">Just a real conversation about your training.</p>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <a href="#"><img src="logo-white.png" alt="BL Strength" style="height: 70px; width: auto;" /></a>
+  <a href="#"><img src="logo-white.png" alt="BL Strength" style="height: 90px; width: auto;" /></a>
   <p>© 2026 BL Strength. All rights reserved.</p>
   <div class="footer-links">
     <a href="#">Instagram</a>
@@ -987,8 +1035,14 @@
 </footer>
 
 <script>
-  document.getElementById('hamburger').addEventListener('click', function() {
-    document.querySelector('.nav-links').classList.toggle('open');
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
   });
 
   // Sticky nav shadow
@@ -1010,36 +1064,6 @@
   document.querySelectorAll('.program-card, .test-card, .nutr-feat, .meal-card').forEach(el => {
     el.style.opacity = '0';
     observer.observe(el);
-  });
-
-  // Contact form submission
-  document.getElementById('contact-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submit-btn');
-    const orig = btn.textContent;
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-    const data = {};
-    this.querySelectorAll('[name]').forEach(el => { data[el.name] = el.value; });
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (res.ok) {
-        btn.textContent = 'Sent!';
-        btn.style.background = '#22c55e';
-        this.reset();
-        setTimeout(() => { btn.disabled = false; btn.textContent = orig; btn.style.background = ''; }, 4000);
-      } else {
-        throw new Error();
-      }
-    } catch {
-      btn.disabled = false;
-      btn.textContent = orig;
-      alert('Something went wrong. Please try again.');
-    }
   });
 </script>
 </body>

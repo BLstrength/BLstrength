@@ -15,7 +15,7 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1.25rem 5%; background: rgba(250,247,242,0.88); backdrop-filter: blur(12px);
+    padding: 1.25rem 5%; background: rgba(244,246,250,0.92); backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(42,74,127,0.12);
   }
   .nav-logo { font-family: 'Lora', serif; font-size: 1.35rem; color: #1A3260; text-decoration: none; }
@@ -23,23 +23,8 @@
   .nav-links { display: flex; gap: 2rem; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
   .nav-links a { text-decoration: none; color: var(--stone); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
   .nav-links a:hover, .nav-links a.active { color: var(--clay); }
-  .nav-links li::after { content: '|'; color: var(--blush-deep); font-size: 1rem; margin-left: 2rem; pointer-events: none; }
-  .nav-links li:last-child::after { display: none; }
   .nav-cta { background: var(--clay); color: #fff; padding: 0.55rem 1.3rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none; }
   .nav-cta:hover { background: var(--clay-dark); }
-
-  #hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-  .ham-bar { display: block; width: 22px; height: 2px; background: #0F1B2D; border-radius: 2px; }
-  @media (max-width: 768px) {
-    nav { padding: 0.75rem 5%; }
-    #hamburger { display: flex; }
-    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: center; gap: 0; background: rgba(250,247,242,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(42,74,127,0.12); padding: 1rem 0 1.5rem; transform: none; z-index: 99; }
-    .nav-links.open { display: flex; }
-    .nav-links li::after { display: none; }
-    .nav-links a { font-size: 1rem; padding: 1.1rem 0; }
-    .nav-cta { display: none; }
-    .nav-mobile-cta { display: block !important; margin-top: 0.75rem; padding: 0.55rem 1.3rem !important; }
-  }
 
   .page { padding: 8rem 5% 5rem; max-width: 1000px; margin: 0 auto; }
   .page-tag { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--clay); margin-bottom: 0.75rem; }
@@ -62,7 +47,30 @@
   .coming-soon h2 { font-family: 'Lora', serif; font-size: 1.6rem; color: #0F1B2D; margin-bottom: 0.75rem; }
   .coming-soon p { font-size: 0.9rem; color: var(--stone); }
 
-  @media (max-width: 700px) { .store-grid { grid-template-columns: 1fr; } }
+  #hamburger {
+    display: none; flex-direction: column; justify-content: center;
+    gap: 5px; background: none; border: none; cursor: pointer; padding: 0.3rem; z-index: 110;
+  }
+  .ham-bar { display: block; width: 22px; height: 2px; background: #0F1B2D; border-radius: 2px; }
+
+  @media (max-width: 768px) {
+    #hamburger { display: flex; }
+    .nav-cta { display: none; }
+    .nav-links {
+      display: none; flex-direction: column; gap: 0.6rem;
+      position: fixed; top: 111px; left: 0; right: 0; transform: none;
+      background: rgba(244,246,250,0.98); backdrop-filter: blur(12px);
+      padding: 1rem 5% 1.25rem;
+      border-bottom: 1px solid rgba(42,74,127,0.12);
+      box-shadow: 0 4px 16px rgba(15,27,45,0.08); z-index: 99;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { border-bottom: none; }
+    .nav-links a { display: block; padding: 1.1rem 1rem; font-size: 1.05rem; background: rgba(42,74,127,0.04); border-radius: 10px; }
+    .nav-links a:active { background: rgba(194,127,77,0.15); }
+    .page { padding: 7rem 5% 4rem; }
+    .store-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -73,10 +81,9 @@
     <li><a href="strength.html">Strength</a></li>
     <li><a href="nutrition.html">Macros</a></li>
     <li><a href="store.html" class="active">Store</a></li>
-    <li style="list-style:none;"><a href="index.html#contact" class="nav-cta nav-mobile-cta" style="display:none;">Apply for Coaching</a></li>
   </ul>
   <a href="index.html#contact" class="nav-cta">Apply for Coaching</a>
-  <button id="hamburger" aria-label="Menu">
+  <button id="hamburger" aria-label="Open menu">
     <span class="ham-bar"></span>
     <span class="ham-bar"></span>
     <span class="ham-bar"></span>
@@ -95,7 +102,7 @@
 </div>
 
 <footer style="background:#0F1B2D; color:rgba(255,255,255,0.6); padding:2rem 5%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; font-family:'DM Sans',sans-serif;">
-  <a href="index.html"><img src="logo-white.png" alt="BL Strength" style="height: 70px; width: auto;" /></a>
+  <a href="index.html"><img src="logo-white.png" alt="BL Strength" style="height: 90px; width: auto;" /></a>
   <p style="font-size:0.82rem;">© 2026 BL Strength. All rights reserved.</p>
   <div style="display:flex; gap:1.5rem;">
     <a href="#" style="color:rgba(255,255,255,0.5); font-size:0.82rem; text-decoration:none;">Instagram</a>
@@ -104,8 +111,11 @@
   </div>
 </footer>
 <script>
-  document.getElementById('hamburger').addEventListener('click', function() {
-    document.querySelector('.nav-links').classList.toggle('open');
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
   });
 </script>
 </body>

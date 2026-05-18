@@ -22,7 +22,9 @@
   }
   .nav-logo { font-family: 'Lora', serif; font-size: 1.35rem; color: var(--clay-dark); text-decoration: none; }
   .nav-logo span { color: var(--sage); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
+  .nav-links { display: flex; gap: 0; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
+  .nav-links li { padding: 0 1.5rem; }
+  .nav-links li + li { border-left: 1px solid rgba(90,106,126,0.35); }
   .nav-links a { text-decoration: none; color: var(--stone); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
   .nav-links a:hover, .nav-links a.active { color: var(--clay); }
   .nav-cta { background: var(--clay); color: #fff; padding: 0.55rem 1.3rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }

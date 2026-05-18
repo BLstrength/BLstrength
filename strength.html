@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BL Strength — Strength Coaching</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #F4F6FA; --warm-white: #FFFFFF; --clay: #2A4A7F; --clay-light: #4A6FA5;
+    --clay-dark: #1A3260; --stone: #5A6A7E; --blush: #DDE6F2; --blush-deep: #C2D3E8;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal, #0F1B2D); }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 5%; background: rgba(244,246,250,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(42,74,127,0.12);
+  }
+  .nav-logo { font-family: 'Lora', serif; font-size: 1.35rem; color: #1A3260; text-decoration: none; }
+  .nav-logo span { color: #5B8DB8; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
+  .nav-links a { text-decoration: none; color: var(--stone); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--clay); }
+  .nav-cta { background: var(--clay); color: #fff; padding: 0.55rem 1.3rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+  .nav-cta:hover { background: var(--clay-dark); }
+
+  .page { padding: 8rem 5% 5rem; max-width: 900px; margin: 0 auto; }
+  .page-tag { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--clay); margin-bottom: 0.75rem; }
+  .page-title { font-family: 'Lora', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: #0F1B2D; margin-bottom: 1rem; }
+  .page-title em { font-style: italic; color: var(--clay); }
+  .page-sub { font-size: 1rem; color: var(--stone); line-height: 1.7; max-width: 600px; margin-bottom: 3rem; }
+
+  .program-card {
+    background: var(--warm-white); border-radius: 24px; padding: 2rem;
+    border: 2px solid var(--blush-deep); margin-bottom: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .program-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(42,74,127,0.12); }
+  .program-card.featured { background: linear-gradient(145deg, #1A3260, #0F1B2D); color: #fff; border-color: transparent; }
+  .prog-name { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; text-align: center; }
+  .prog-price { font-size: 1.6rem; font-weight: 700; color: var(--clay); margin: 0.75rem 0; text-align: center; }
+  .program-card.featured .prog-price { color: #A0BDD8; }
+  .prog-price span { font-size: 0.85rem; font-weight: 400; color: var(--stone); }
+  .program-card.featured .prog-price span { color: rgba(255,255,255,0.5); }
+  .prog-desc { font-size: 0.9rem; color: var(--stone); line-height: 1.6; margin-bottom: 1rem; text-align: center; }
+  .program-card.featured .prog-desc { color: rgba(255,255,255,0.7); }
+  .prog-features { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.5rem; }
+  .prog-feature { font-size: 0.88rem; color: var(--stone); display: flex; align-items: center; gap: 0.5rem; }
+  .prog-feature::before { content: '→'; color: #5B8DB8; font-weight: 600; }
+  .program-card.featured .prog-feature { color: rgba(255,255,255,0.8); }
+  .prog-cta { display: block; text-align: center; background: var(--clay); color: #fff; padding: 0.75rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+  .prog-cta:hover { background: var(--clay-dark); }
+  .program-card.featured .prog-cta { background: #fff; color: var(--clay-dark); }
+  .commitment { text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--stone); }
+
+  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .form-row-phone { display: grid; grid-template-columns: 1fr 2fr; gap: 0.75rem; }
+
+  #hamburger {
+    display: none; flex-direction: column; justify-content: center;
+    gap: 5px; background: none; border: none; cursor: pointer; padding: 0.3rem; z-index: 110;
+  }
+  .ham-bar { display: block; width: 22px; height: 2px; background: #0F1B2D; border-radius: 2px; }
+
+  @media (max-width: 768px) {
+    #hamburger { display: flex; }
+    .nav-cta { display: none; }
+    .nav-links {
+      display: none; flex-direction: column; gap: 0;
+      position: fixed; top: 111px; left: 0; right: 0; transform: none;
+      background: rgba(244,246,250,0.98); backdrop-filter: blur(12px);
+      padding: 0.5rem 5% 1rem;
+      border-bottom: 1px solid rgba(42,74,127,0.12);
+      box-shadow: 0 4px 16px rgba(15,27,45,0.08); z-index: 99;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { border-bottom: 1px solid rgba(42,74,127,0.08); }
+    .nav-links li:last-child { border-bottom: none; }
+    .nav-links a { display: block; padding: 0.9rem 0; font-size: 1rem; }
+    .page { padding: 7rem 5% 4rem; }
+  }
+
+  @media (max-width: 600px) {
+    .form-row-2, .form-row-phone { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><img src="logo-blue.png" alt="BL Strength" style="height: 70px; width: auto;" /></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About Me</a></li>
+    <li><a href="strength.html" class="active">Strength</a></li>
+    <li><a href="nutrition.html">Macros</a></li>
+    <li><a href="store.html">Store</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Apply for Coaching</a>
+  <button id="hamburger" aria-label="Open menu">
+    <span class="ham-bar"></span>
+    <span class="ham-bar"></span>
+    <span class="ham-bar"></span>
+  </button>
+</nav>
+
+<div class="page">
+  <div class="page-tag">Strength Coaching</div>
+  <h1 class="page-title">Train with a <em>proven powerlifter.</em></h1>
+  <p class="page-sub">Strength starts with the basics. Bobby's coaching is built on real competitive experience — proper technique, smart progression, and programming that works.</p>
+
+  <div class="program-card featured">
+    <div class="prog-name">Strength</div>
+    <div class="prog-price">$200 <span>/ month</span></div>
+    <p class="prog-desc">Strength starts with the basics. This program focuses on proper technique and progression in the squat, bench, and deadlift.</p>
+    <ul class="prog-features">
+      <li class="prog-feature">Personalized Programs</li>
+      <li class="prog-feature">Technique coaching & cues</li>
+      <li class="prog-feature">Video feedback</li>
+      <li class="prog-feature">Direct access to your coach</li>
+      <li class="prog-feature">Bi-weekly check-in</li>
+    </ul>
+    <a href="#contact" class="prog-cta">Get Started</a>
+  </div>
+
+  <p class="commitment">* Required 3 month commitment, then month to month</p>
+</div>
+
+<!-- CTA -->
+<section id="contact" style="background: linear-gradient(135deg, #0F1B2D 0%, #1A3260 60%, #2A4A7F 100%); color: #fff; text-align: center; padding: 3rem 5%; position: relative; overflow: hidden;">
+  <div style="font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:0.75rem;">Free Consultation</div>
+  <h2 style="font-family:'Lora',serif; font-size:clamp(1.8rem,3vw,2.6rem); color:#fff; margin-bottom:0.5rem;">Ready to hit your<br><em style="font-style:italic; color:rgba(255,255,255,0.85);">next PR?</em></h2>
+  <p style="font-size:1rem; color:rgba(255,255,255,0.75); line-height:1.7; max-width:520px; margin:0 auto 0.75rem;">Fill out the form below and Bobby will be in touch to schedule your free 30-minute consultation.</p>
+
+  <div style="background:#fff; border-radius:20px; padding:1.5rem 2rem; max-width:600px; margin:1.2rem auto 0; text-align:left; position:relative; z-index:1;">
+    <div class="form-row-2">
+      <div>
+        <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">First Name <span style="color:#2A4A7F;">(required)</span></label>
+        <input type="text" style="width:100%; padding:0.75rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+      </div>
+      <div>
+        <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Last Name <span style="color:#2A4A7F;">(required)</span></label>
+        <input type="text" style="width:100%; padding:0.75rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+      </div>
+    </div>
+    <div style="margin-bottom:0.75rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.3rem;">Email <span style="color:#2A4A7F;">(required)</span></label>
+      <input type="email" style="width:100%; padding:0.6rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+      <div style="margin-top:0.4rem; display:flex; align-items:center; gap:0.5rem;">
+        <input type="checkbox" id="newsletter" style="width:16px; height:16px; accent-color:#2A4A7F;" />
+        <label for="newsletter" style="font-size:0.82rem; color:#5A6A7E;">Sign up for news and updates</label>
+      </div>
+    </div>
+    <div style="margin-bottom:0.75rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.3rem;">Phone <span style="color:#2A4A7F;">(required)</span></label>
+      <div class="form-row-phone">
+        <select style="padding:0.6rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none; background:#fff;">
+          <option>US +1</option><option>UK +44</option><option>CA +1</option><option>AU +61</option>
+        </select>
+        <input type="tel" placeholder="Number" style="width:100%; padding:0.6rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+      </div>
+    </div>
+    <div style="margin-bottom:0.75rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.3rem;">How did you hear about us? <span style="color:#2A4A7F;">(required)</span></label>
+      <select style="width:100%; padding:0.6rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
+        <option value="" disabled selected>Select an option</option>
+        <option>Instagram</option><option>Google</option><option>Friend / Word of mouth</option><option>Powerlifting meet</option><option>Other</option>
+      </select>
+    </div>
+    <div style="margin-bottom:1rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.3rem;">Brief description of your goal <span style="color:#2A4A7F;">(required)</span></label>
+      <textarea rows="3" style="width:100%; padding:0.6rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none; resize:vertical;"></textarea>
+    </div>
+    <button type="button" style="background:#1A3260; color:#fff; border:none; padding:0.9rem 2.5rem; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:600; cursor:pointer;" onmouseover="this.style.background='#0F1B2D'" onmouseout="this.style.background='#1A3260'">Send</button>
+  </div>
+  <p style="font-size:0.8rem; color:rgba(255,255,255,0.5); margin-top:1.5rem;">No spam. No commitment. Just a real conversation about your training.</p>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0F1B2D; color:rgba(255,255,255,0.6); padding:2rem 5%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; font-family:'DM Sans',sans-serif;">
+  <a href="index.html"><img src="logo-white.png" alt="BL Strength" style="height: 90px; width: auto;" /></a>
+  <p style="font-size:0.82rem;">© 2026 BL Strength. All rights reserved.</p>
+  <div style="display:flex; gap:1.5rem;">
+    <a href="#" style="color:rgba(255,255,255,0.5); font-size:0.82rem; text-decoration:none;">Instagram</a>
+    <a href="#" style="color:rgba(255,255,255,0.5); font-size:0.82rem; text-decoration:none;">Privacy</a>
+    <a href="#" style="color:rgba(255,255,255,0.5); font-size:0.82rem; text-decoration:none;">Contact</a>
+  </div>
+</footer>
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+</script>
+</body>
+</html>

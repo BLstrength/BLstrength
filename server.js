@@ -13,7 +13,6 @@ app.post('/api/contact', require('./api/contact'));
 app.get('/about', (req, res) => res.sendFile(path.join(__dirname, 'docs', 'about.html')));
 app.get('/strength', (req, res) => res.sendFile(path.join(__dirname, 'docs', 'strength.html')));
 app.get('/nutrition', (req, res) => res.sendFile(path.join(__dirname, 'docs', 'nutrition.html')));
-app.get('/store', (req, res) => res.sendFile(path.join(__dirname, 'docs', 'store.html')));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'docs', 'index.html')));
 
 app.listen(PORT, () => {

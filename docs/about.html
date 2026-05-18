@@ -44,6 +44,13 @@
 
   .photo-area { background: var(--blush); border: 2px dashed var(--blush-deep); border-radius: 20px; height: 320px; display: flex; align-items: center; justify-content: center; color: var(--stone); font-size: 0.9rem; margin-bottom: 2.5rem; }
 
+  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .cta-section { background: linear-gradient(135deg, #0F1B2D 0%, #1A3260 60%, #2A4A7F 100%); color: #fff; text-align: center; padding: 3rem 5%; position: relative; overflow: hidden; }
+  .cta-section .section-title { font-family: 'Lora', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); color: #fff; margin-bottom: 0.5rem; }
+  .cta-section .section-sub { font-size: 1rem; color: rgba(255,255,255,0.75); line-height: 1.7; max-width: 520px; margin: 0 auto 0.75rem; }
+  .cta-section .cta-note { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 1.5rem; }
+  .cta-tag { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 0.75rem; }
+
   #hamburger {
     display: none; flex-direction: column; justify-content: center;
     gap: 5px; background: none; border: none; cursor: pointer; padding: 0.3rem; z-index: 110;
@@ -69,6 +76,7 @@
     .stats-row { flex-direction: column; }
     .stat-card { min-width: unset; }
     .page { padding: 7rem 5% 4rem; }
+    .form-row-2 { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -80,7 +88,7 @@
     <li><a href="strength.html">Strength</a></li>
     <li><a href="nutrition.html">Macros</a></li>
   </ul>
-  <a href="index.html#contact" class="nav-cta">Apply for Coaching</a>
+  <a href="#contact" class="nav-cta">Apply for Coaching</a>
   <button id="hamburger" aria-label="Open menu">
     <span class="ham-bar"></span>
     <span class="ham-bar"></span>
@@ -123,6 +131,63 @@
     </div>
   </div>
 </div>
+
+<section class="cta-section" id="contact">
+  <div class="cta-tag">Free Consultation</div>
+  <h2 class="section-title">Let's build your <em style="font-style:italic; color:rgba(255,255,255,0.85);">plan</em></h2>
+  <p class="section-sub">Fill out the form below and Bobby will be in touch to schedule your free 30 minute consultation via Zoom.</p>
+
+  <div style="background:#fff; border-radius:20px; padding:1.5rem 2rem; max-width:600px; margin:1.2rem auto 0; text-align:left; position:relative; z-index:1;">
+    <div class="form-row-2">
+      <div>
+        <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">First Name <span style="color:#2A4A7F;">(required)</span></label>
+        <input type="text" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+      </div>
+      <div>
+        <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Last Name <span style="color:#2A4A7F;">(required)</span></label>
+        <input type="text" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+      </div>
+    </div>
+    <div style="margin-bottom:0.75rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Email <span style="color:#2A4A7F;">(required)</span></label>
+      <input type="email" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+    </div>
+    <div style="margin-bottom:0.75rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Phone Number <span style="color:#2A4A7F;">(required)</span></label>
+      <input type="tel" placeholder="e.g. +1 555 000 0000" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+    </div>
+    <div style="margin-bottom:0.75rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">How did you hear about me? <span style="color:#2A4A7F;">(required)</span></label>
+      <select style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
+        <option value="" disabled selected>Select an option</option>
+        <option>Instagram</option>
+        <option>Google</option>
+        <option>Friend / Word of mouth</option>
+        <option>Powerlifting meet</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div style="margin-bottom:0.75rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">What service are you interested in? <span style="color:#2A4A7F;">(required)</span></label>
+      <select style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
+        <option value="" disabled selected>Select a service</option>
+        <option>Strength Coaching</option>
+        <option>Macro Coaching</option>
+        <option>Video Critique</option>
+        <option>Zoom Call</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div style="margin-bottom:1rem;">
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Brief description of your goal <span style="color:#2A4A7F;">(required)</span></label>
+      <textarea rows="3" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none; resize:vertical;"></textarea>
+    </div>
+    <div style="text-align:center;">
+      <button type="button" style="background:#1A3260; color:#fff; border:none; padding:0.9rem 2.5rem; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:600; cursor:pointer;" onmouseover="this.style.background='#0F1B2D'" onmouseout="this.style.background='#1A3260'">Send</button>
+    </div>
+  </div>
+  <p class="cta-note">Just a real conversation about your training.</p>
+</section>
 
 <footer style="background:#0F1B2D; color:rgba(255,255,255,0.6); padding:2rem 5%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; font-family:'DM Sans',sans-serif;">
   <a href="index.html"><img src="logo-white.png" alt="BL Strength" style="height: 70px; width: auto;" /></a>

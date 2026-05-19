@@ -135,28 +135,28 @@
   <h2 class="section-title">Let's build your <em style="font-style:italic; color:rgba(255,255,255,0.85);">plan</em></h2>
   <p class="section-sub">Fill out the form below and Bobby will be in touch to schedule your free 30 minute consultation via Zoom.</p>
 
-  <div style="background:#fff; border-radius:20px; padding:1.5rem 2rem; max-width:600px; margin:1.2rem auto 0; text-align:left; position:relative; z-index:1;">
+  <form id="contact-form" style="background:#fff; border-radius:20px; padding:1.5rem 2rem; max-width:600px; margin:1.2rem auto 0; text-align:left; position:relative; z-index:1;">
     <div class="form-row-2">
       <div>
         <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">First Name <span style="color:#2A4A7F;">(required)</span></label>
-        <input type="text" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+        <input type="text" name="firstName" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
       </div>
       <div>
         <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Last Name <span style="color:#2A4A7F;">(required)</span></label>
-        <input type="text" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+        <input type="text" name="lastName" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
       </div>
     </div>
     <div style="margin-bottom:0.75rem;">
       <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Email <span style="color:#2A4A7F;">(required)</span></label>
-      <input type="email" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+      <input type="email" name="email" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
     </div>
     <div style="margin-bottom:0.75rem;">
       <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Phone Number <span style="color:#2A4A7F;">(required)</span></label>
-      <input type="tel" placeholder="e.g. +1 555 000 0000" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
+      <input type="tel" name="phone" placeholder="e.g. +1 555 000 0000" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
     </div>
     <div style="margin-bottom:0.75rem;">
       <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">How did you hear about me? <span style="color:#2A4A7F;">(required)</span></label>
-      <select style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
+      <select name="hearAbout" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
         <option value="" disabled selected>Select an option</option>
         <option>Instagram</option>
         <option>Google</option>
@@ -167,7 +167,7 @@
     </div>
     <div style="margin-bottom:0.75rem;">
       <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">What service are you interested in? <span style="color:#2A4A7F;">(required)</span></label>
-      <select style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
+      <select name="service" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
         <option value="" disabled selected>Select a service</option>
         <option>Strength Coaching</option>
         <option>Macro Coaching</option>
@@ -178,12 +178,12 @@
     </div>
     <div style="margin-bottom:1rem;">
       <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Brief description of your goal <span style="color:#2A4A7F;">(required)</span></label>
-      <textarea rows="3" style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none; resize:vertical;"></textarea>
+      <textarea name="goal" rows="3" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none; resize:vertical;"></textarea>
     </div>
     <div style="text-align:center;">
-      <button type="button" style="background:#1A3260; color:#fff; border:none; padding:0.9rem 2.5rem; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:600; cursor:pointer;" onmouseover="this.style.background='#0F1B2D'" onmouseout="this.style.background='#1A3260'">Send</button>
+      <button id="submit-btn" type="submit" style="background:#1A3260; color:#fff; border:none; padding:0.9rem 2.5rem; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:600; cursor:pointer; transition:background 0.2s;">Send</button>
     </div>
-  </div>
+  </form>
   <p class="cta-note">Just a real conversation about your training.</p>
 </section>
 
@@ -202,6 +202,35 @@
   hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    const data = {};
+    this.querySelectorAll('[name]').forEach(el => { data[el.name] = el.value; });
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        btn.textContent = 'Sent!';
+        btn.style.background = '#22c55e';
+        this.reset();
+        setTimeout(() => { btn.disabled = false; btn.textContent = orig; btn.style.background = ''; }, 4000);
+      } else {
+        throw new Error();
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = orig;
+      alert('Something went wrong. Please try again.');
+    }
   });
 </script>
 </body>

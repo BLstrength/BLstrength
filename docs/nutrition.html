@@ -131,24 +131,24 @@
   <form id="contact-form" style="background:#fff; border-radius:20px; padding:1.5rem 2rem; max-width:600px; margin:1.2rem auto 0; text-align:left; position:relative; z-index:1;">
     <div class="form-row-2">
       <div>
-        <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">First Name <span style="color:#2A4A7F;">(required)</span></label>
+        <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">First Name</label>
         <input type="text" name="firstName" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
       </div>
       <div>
-        <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Last Name <span style="color:#2A4A7F;">(required)</span></label>
+        <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Last Name</label>
         <input type="text" name="lastName" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
       </div>
     </div>
     <div style="margin-bottom:0.75rem;">
-      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Email <span style="color:#2A4A7F;">(required)</span></label>
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Email</label>
       <input type="email" name="email" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
     </div>
     <div style="margin-bottom:0.75rem;">
-      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Phone Number <span style="color:#2A4A7F;">(required)</span></label>
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Phone Number</label>
       <input type="tel" name="phone" placeholder="e.g. +1 555 000 0000" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none;" />
     </div>
     <div style="margin-bottom:0.75rem;">
-      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">How did you hear about me? <span style="color:#2A4A7F;">(required)</span></label>
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">How did you hear about me?</label>
       <select name="hearAbout" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
         <option value="" disabled selected>Select an option</option>
         <option>Instagram</option>
@@ -159,20 +159,31 @@
       </select>
     </div>
     <div style="margin-bottom:0.75rem;">
-      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">What service are you interested in? <span style="color:#2A4A7F;">(required)</span></label>
-      <select name="service" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#5A6A7E; outline:none; background:#fff;">
-        <option value="" disabled selected>Select a service</option>
-        <option>Strength Coaching</option>
-        <option>Macro Coaching</option>
-        <option>Video Critique</option>
-        <option>Zoom Call</option>
-        <option>Other</option>
-      </select>
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.6rem;">What service(s) are you interested in?</label>
+      <div id="service-options" style="display:flex; flex-direction:column; gap:0.45rem;">
+        <label style="display:flex; align-items:center; gap:0.6rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; cursor:pointer;">
+          <input type="checkbox" name="service" value="Strength Coaching" style="width:1.1rem; height:1.1rem; accent-color:#1A3260; cursor:pointer;" /> Strength Coaching
+        </label>
+        <label style="display:flex; align-items:center; gap:0.6rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; cursor:pointer;">
+          <input type="checkbox" name="service" value="Macro Coaching" style="width:1.1rem; height:1.1rem; accent-color:#1A3260; cursor:pointer;" /> Macro Coaching
+        </label>
+        <label style="display:flex; align-items:center; gap:0.6rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; cursor:pointer;">
+          <input type="checkbox" name="service" value="Video Critique" style="width:1.1rem; height:1.1rem; accent-color:#1A3260; cursor:pointer;" /> Video Critique
+        </label>
+        <label style="display:flex; align-items:center; gap:0.6rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; cursor:pointer;">
+          <input type="checkbox" name="service" value="Zoom Call" style="width:1.1rem; height:1.1rem; accent-color:#1A3260; cursor:pointer;" /> Zoom Call
+        </label>
+        <label style="display:flex; align-items:center; gap:0.6rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; cursor:pointer;">
+          <input type="checkbox" name="service" value="Other" style="width:1.1rem; height:1.1rem; accent-color:#1A3260; cursor:pointer;" /> Other
+        </label>
+      </div>
+      <div id="service-error" style="display:none; color:#dc2626; font-size:0.8rem; margin-top:0.4rem;">Please select at least one service.</div>
     </div>
     <div style="margin-bottom:1rem;">
-      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Brief description of your goal <span style="color:#2A4A7F;">(required)</span></label>
+      <label style="display:block; font-size:0.82rem; font-weight:600; color:#0F1B2D; margin-bottom:0.4rem;">Brief description of your goal</label>
       <textarea name="goal" rows="3" required style="width:100%; padding:0.65rem 1rem; border:1.5px solid #C2D3E8; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:#0F1B2D; outline:none; resize:vertical;"></textarea>
     </div>
+    <p style="text-align:center; font-family:'DM Sans',sans-serif; font-size:0.82rem; color:#5A6A7E; margin-bottom:0.75rem;">All fields are required.</p>
     <div style="text-align:center;">
       <button id="submit-btn" type="submit" style="background:#1A3260; color:#fff; border:none; padding:0.9rem 2.5rem; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:600; cursor:pointer; transition:background 0.2s;">Send</button>
     </div>
@@ -204,8 +215,18 @@
     const orig = btn.textContent;
     btn.disabled = true;
     btn.textContent = 'Sending...';
+    const checked = [...this.querySelectorAll('input[name="service"]:checked')].map(el => el.value);
+    const serviceError = document.getElementById('service-error');
+    if (checked.length === 0) {
+      serviceError.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = orig;
+      return;
+    }
+    serviceError.style.display = 'none';
     const data = {};
-    this.querySelectorAll('[name]').forEach(el => { data[el.name] = el.value; });
+    this.querySelectorAll('[name]:not([type="checkbox"])').forEach(el => { data[el.name] = el.value; });
+    data.service = checked.join(', ');
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',

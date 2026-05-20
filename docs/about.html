@@ -43,6 +43,9 @@
   .stat-label { font-size: 0.78rem; color: var(--stone); margin-top: 0.2rem; }
 
   .photo-area { background: var(--blush); border: 2px dashed var(--blush-deep); border-radius: 20px; height: 320px; display: flex; align-items: center; justify-content: center; color: var(--stone); font-size: 0.9rem; margin-bottom: 2.5rem; }
+  .photos-row { display: flex; gap: 1.5rem; margin-top: 2.5rem; }
+  .photos-row img { flex: 1; min-width: 0; width: 50%; border-radius: 16px; object-fit: cover; aspect-ratio: 3/4; }
+  @media (max-width: 600px) { .photos-row { flex-direction: column; } .photos-row img { width: 100%; } }
 
   .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
   .cta-section { background: linear-gradient(135deg, #0F1B2D 0%, #1A3260 60%, #2A4A7F 100%); color: #fff; text-align: center; padding: 3rem 5%; position: relative; overflow: hidden; }
@@ -100,8 +103,6 @@
   <div class="page-tag">About Me</div>
   <h1 class="page-title">Bobby Lawson</h1>
 
-  <img src="BobbySquat.jpg" alt="Bobby Lawson competing at Nittany Barbell" style="width:100%; max-width:480px; border-radius:16px; display:block; margin:0 auto 2.5rem;" />
-
   <div class="page-body">
     <p>I'm Bobby Lawson, a competitive powerlifter from State College, PA, and powerlifting has been a huge part of my life for as long as I can remember. I started lifting at 10 years old with my older brother, and by 19 I had moved into equipped lifting. That's when I really began to grow as a lifter through years of training, competing, and learning from veteran mentors.</p>
     <p>Over the years, I've trained at Big Iron Gym, Omaha Barbell, 814 Barbell, and Nittany Barbell. Each gym has played a part in shaping who I am as both a lifter and a coach. I've broken 11 world records in my career, including 3 in the squat, 1 in the bench press, 3 in the deadlift, and 2 in the total.</p>
@@ -130,6 +131,11 @@
       <div class="stat-num">11</div>
       <div class="stat-label">World Records</div>
     </div>
+  </div>
+
+  <div class="photos-row">
+    <img src="BobbySquat.jpg" alt="Bobby Lawson squatting" />
+    <img src="BobbyDeadlift.jpg" alt="Bobby Lawson deadlifting" />
   </div>
 </div>
 

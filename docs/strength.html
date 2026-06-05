@@ -25,6 +25,7 @@
   .nav-links a:hover, .nav-links a.active { color: var(--clay); }
   .nav-links li::after { content: '|'; color: var(--blush-deep); font-size: 1rem; margin-left: 2rem; pointer-events: none; }
   .nav-links li:last-child::after { display: none; }
+  .nav-links li:has(+ li:has(.nav-mobile-cta))::after { display: none; }
   .nav-cta { background: var(--clay); color: #fff; padding: 0.55rem 1.3rem; border-radius: 50px; font-weight: 600; text-decoration: none; }
   .nav-cta:hover { background: var(--clay-dark); }
 
@@ -95,7 +96,7 @@
   <a href="index.html" class="nav-logo"><img src="logo-blue.png" alt="BL Strength" style="height: 70px; width: auto;" /></a>
   <ul class="nav-links">
     <li><a href="about.html">About Me</a></li>
-    <li><a href="strength.html" class="active">Strength</a></li>
+    <li><a href="strength.html" class="active">Strength Coaching</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Apply for Coaching</a>
   <button id="hamburger" aria-label="Open menu">

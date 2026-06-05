@@ -76,8 +76,7 @@
     pointer-events: none;
   }
   .nav-links li:last-child::after { display: none; }
-  .nav-links li:has(+ li:has(.nav-mobile-cta))::after { display: none; }
-  .nav-links li:nth-last-child(2):has(~ li:last-child:has(.nav-mobile-cta))::after { display: none; }
+  .nav-links li:nth-child(2)::after { display: none; }
   li:has(.nav-mobile-cta) { display: none; }
 
   .nav-login {
